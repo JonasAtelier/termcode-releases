@@ -1,0 +1,22 @@
+Package: termcode
+Architecture: amd64
+Version: 0.1.0-1
+Priority: optional
+Section: editors
+Maintainer: JonasAtelier
+Installed-Size: 7106
+Depends: git, ripgrep
+Recommends: xclip, shellcheck
+Suggests: wl-clipboard, clang
+Filename: pool/main/t/termcode/termcode_0.1.0-1_amd64.deb
+Size: 2304284
+MD5sum: f7bd4110d0fafedcbdfc66e229a00629
+SHA1: 31dc35c7440fc26e9e415e406d63771710bc2e14
+SHA256: 8824fc29d2602b1c13c3f2ea7322ecad34909e0585e6d1f071833a63b4d15e6d
+SHA512: 187ffa295f9499644c32375eeb57bc31ead8a87acd8eeb3791aaa250baf1161d7a7fc5dbe674d64809e436550b43c01167684e51be7d0724feb2160a78c321ee
+Homepage: https://github.com/JonasAtelier/termcode-releases
+Description: A VS Code-style code editor and Git panel in the terminal
+ A VS Code-style code editor and Git panel that runs inside the terminal, like
+ vim, or as a Code tab in a herdr workspace. To add the Code tab to herdr, run:
+ herdr plugin link /usr/share/termcode
+
