@@ -217,13 +217,13 @@ Keys are `ctrl`, `alt` and `shift` joined with `+` to a letter, digit, symbol, `
 `enter`, `tab`, `esc`, `space`, `backspace`, `delete`, `home`, `end`, `pageup`,
 `pagedown` or an arrow (`up`, `down`, `left`, `right`). Your keys come before the
 default ones, and F1 shows them next to their commands. A key or command name that
-doesn't exist is reported in the status bar.
+doesn't exist is a settings error (a notification says which).
 
 ### Error checking
 
 Shell scripts and C/C++ files are checked as you work. A problem gets a **red** (error),
 **yellow** (warning) or **blue** (info) underline; rest the pointer on it to read why.
-The status bar counts errors and warnings, and the scrollbar marks where they are.
+The scrollbar marks where they are.
 
 | Files | Checked by | When |
 |---|---|---|
@@ -260,7 +260,8 @@ Turn error checking off with `"termcode.errorChecking": false`.
   **Commit & Push**. Your draft is kept if you cancel.
 - **Graph:** click a commit to see its files, click a file to see its diff. Rest the pointer
   on a commit (or press `i`) for a card with **Copy hash** and **Open changes**.
-- **Status bar:** click the branch to switch or create one; click `↓1 ↑2` to pull and push.
+- **Status bar:** click the branch to switch or create one; click `↓1 ↑2` to pull and push;
+  click `Ln, Col` to go to a line. Every item lights up under the pointer.
 - **More Git:** F1, then type `Git:` for pull, push, fetch, stash, merge, rebase and more.
   Risky ones ask first.
 - **Merge conflicts:** click **Accept Current**, **Accept Incoming** or **Accept Both** above
@@ -290,7 +291,8 @@ Prefer a file? The first time termcode starts it writes
 **`~/.config/termcode/settings.json`**, listing every option of the Settings window at its
 default, commented out. To change one, remove the `//` in front of it and edit the value;
 saving applies it. F1 **Preferences: Open Settings (JSON)** opens the file from inside
-termcode. A broken file never crashes the panel: the last good settings stay.
+termcode. A broken file never crashes the panel: a notification says what is wrong, and
+the last good settings stay.
 
 ```jsonc
     // "termcode.icons": "auto",                          // Icons: "auto", "nerd", "unicode", "ascii"
@@ -391,7 +393,7 @@ first time termcode starts.
 | The Code tab doesn't open | Restart herdr after fixing `PATH`; check `herdr plugin list` |
 | Ctrl+Shift keys do nothing | Your terminal doesn't send them; use F1, the other key, or [your own key](#your-own-keys) |
 | Source Control says "Git is off" | The repository's own settings run programs; trust it there if you know where it came from |
-| No error underlines | Install `shellcheck` / `clang`; the status bar says which is missing |
+| No error underlines | Install `shellcheck` / `clang` (the status bar says which, once) |
 | C/C++ says a header is not found | Build the kernel once, or add a `compile_commands.json` (see [Error checking](#error-checking)) |
 | A file opens read-only | It is over 16 MB / 500,000 lines, binary, or not UTF-8 |
 
