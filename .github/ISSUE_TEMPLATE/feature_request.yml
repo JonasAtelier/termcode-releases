@@ -1,0 +1,16 @@
+name: Feature request
+description: Something termcode could do
+labels: [enhancement]
+body:
+  - type: textarea
+    id: want
+    attributes:
+      label: What you would like
+      description: What you want to do, and how you would expect it to work.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: What it would let you do that you can't today.

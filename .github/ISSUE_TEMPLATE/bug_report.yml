@@ -1,0 +1,34 @@
+name: Bug report
+description: Something in termcode doesn't work as it should
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to make it happen
+      description: The steps, starting from opening termcode.
+      placeholder: |
+        1. termcode ~/project
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: termcode details
+      description: In termcode, press F1 and run "Help: Report Issue", then paste here.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: more
+    attributes:
+      label: Anything else
+      description: Screenshots, the font you use, whether it happens inside herdr or tmux.
