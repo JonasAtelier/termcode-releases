@@ -1,9 +1,8 @@
 # termcode releases, issues and feature requests
 
 termcode is a VS Code-style code editor and Git panel that runs inside your terminal.
-This repository is where you report problems and ask for features, and where termcode
-is published. It holds no source
-code.
+This repository is where termcode is published, and where you report problems and ask
+for features. It holds no source code.
 
 ## Report a problem
 
