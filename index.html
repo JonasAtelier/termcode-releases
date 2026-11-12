@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>termcode apt repository</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 16px/1.5 system-ui, sans-serif; max-width: 46rem; margin: 2rem auto; padding: 0 1rem; }
+  pre { background: #8881; padding: .8rem 1rem; border-radius: 6px; overflow-x: auto; }
+  code { font-family: ui-monospace, monospace; font-size: .92em; }
+</style>
+</head>
+<body>
+<h1>termcode apt repository</h1>
+<p>termcode is a VS Code-style code editor and Git panel that runs inside your terminal.
+This is its apt repository, for Debian and Ubuntu on amd64 and arm64.</p>
+<h2>Install</h2>
+<pre><code>sudo curl -fsSLo /usr/share/keyrings/termcode.gpg https://jonasatelier.github.io/termcode-releases/termcode.gpg
+echo "deb [signed-by=/usr/share/keyrings/termcode.gpg] https://jonasatelier.github.io/termcode-releases stable main" \
+  | sudo tee /etc/apt/sources.list.d/termcode.list
+sudo apt update &amp;&amp; sudo apt install termcode</code></pre>
+<p>New versions then come with <code>sudo apt upgrade</code>.</p>
+<h2>Signing key</h2>
+<p>The repository is signed with <code>termcode releases</code>, fingerprint<br><code>8DF2288B3BD908A32CD57371E81C850CE8AD044F</code></p>
+<p>Check it with <code>gpg --show-keys /usr/share/keyrings/termcode.gpg</code>.</p>
+<h2>More</h2>
+<p><a href="https://github.com/JonasAtelier/termcode-releases">Guide, releases and issues</a></p>
+</body>
+</html>

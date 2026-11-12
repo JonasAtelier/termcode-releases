@@ -1,0 +1,47 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Architectures: amd64 arm64
+Codename: stable
+Components: main
+Date: Thu, 12 Nov 2026 05:52:34 +0000
+Description: termcode, a VS Code-style editor in the terminal
+Label: termcode
+Origin: termcode
+Suite: stable
+MD5Sum:
+ d41d8cd98f00b204e9800998ecf8427e                0 main/binary-amd64/Packages
+ 4a4dd3598707603b3f76a2378a4504aa               20 main/binary-amd64/Packages.gz
+ d41d8cd98f00b204e9800998ecf8427e                0 main/binary-arm64/Packages
+ 4a4dd3598707603b3f76a2378a4504aa               20 main/binary-arm64/Packages.gz
+SHA1:
+ da39a3ee5e6b4b0d3255bfef95601890afd80709                0 main/binary-amd64/Packages
+ a0fddd5458378c1bf3c10dd2f5c060d1347741ed               20 main/binary-amd64/Packages.gz
+ da39a3ee5e6b4b0d3255bfef95601890afd80709                0 main/binary-arm64/Packages
+ a0fddd5458378c1bf3c10dd2f5c060d1347741ed               20 main/binary-arm64/Packages.gz
+SHA256:
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855                0 main/binary-amd64/Packages
+ f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec               20 main/binary-amd64/Packages.gz
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855                0 main/binary-arm64/Packages
+ f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec               20 main/binary-arm64/Packages.gz
+SHA512:
+ cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e                0 main/binary-amd64/Packages
+ 1b46b9b08d5b338be9d732a1724795b2eab63daffde377218727c90857b79fe6a47bceed495117fcde60f7339812ef75ef4c69f82dd79fb69b6cbf8006b521f2               20 main/binary-amd64/Packages.gz
+ cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e                0 main/binary-arm64/Packages
+ 1b46b9b08d5b338be9d732a1724795b2eab63daffde377218727c90857b79fe6a47bceed495117fcde60f7339812ef75ef4c69f82dd79fb69b6cbf8006b521f2               20 main/binary-arm64/Packages.gz
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEjfIoizvZCKMs1XNx6ByFDOitBE8FAmr1VCIACgkQ6ByFDOit
+BE8xkw//RD9I2JUYfldKHR0v+zDVn4BlaALtm2lJV4Fs66JQJ6cnp7n0HMypCJ6g
+k2mOIhlKX6hppjDMK8jN/7VwcAbOSkuR09W3w6WwnAgGk242O+zNyd6QLkRGd+3f
+QMtwPGTwBrOPbYLE0y1x9hLHR1eYNv8d3md7Wu6HoB7rZiMEs26pnMNNmUC/rHm7
+5dCQTRHvbRSLxXuqOcg1DTlQehWQpwRIB+CrpusMPz7r/tBBHowPZ3X8akpjwPTe
+uCs5yvwAkt0ZPb80fVpA20TwmZi6k99TzzdyA+OlFPFxpN0nwqYUghM0uigm1dwF
+DVkyzx52Z2g8L9pNSl2VxqojsRs0SrZ3H/E0eUe8wUKQQ1H2TpO/YvTolWvSoUVO
+isdhbW2yExqy9lYyPu5py+QJbgFocXJ0sa53k/MoXwCs3IkweoEpk4JpUCNf5ZFI
+mNrQKHlOXthRtoZA6OztC2DVx1SVkAUeUGVmymnVhFLEnBt+/9iBNCZa/S9+PzGd
+9Xz/W/osfXoDys04703LQ+ty/1XArrWr9VrGjm9yA3fMgTrspWAzDTG/WehN0L43
+DZoq3auWLomkSJhdTtivYPC/JVX5p46NW5CTFeevosmyyCSBP8H16+GjerLfapPz
+k0ZM5FAIJI02YL0nCtuVfrspn73Ek4GXc49bKv9m1ye7J4MpAyY=
+=1zSY
+-----END PGP SIGNATURE-----
