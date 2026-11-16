@@ -16,6 +16,8 @@ C/C++, and VS Code themes.
 
 ![Source Control: changes, the commit graph and a side-by-side diff](doc/screenshots/git.png)
 
+![The GitHub view: an account's contributions and repositories, a repository's stats and Actions](doc/screenshots/github.png)
+
 ### Is it for you?
 
 termcode is for working on code where your terminal already is: on a server over SSH, in
@@ -211,10 +213,12 @@ or a file or folder onto a folder in the Explorer to move it there (asked first)
 adds items to the selection, Shift+click or Shift+↑↓ selects a range, Ctrl+A all; a drag,
 Ctrl+C / Ctrl+X / Ctrl+V and Delete then take them all. Ctrl+V copies or moves into the
 selected folder; a name already there becomes `name (1)`, `name (2)` …, and a big folder
-copies in the background. Delete moves the selection to the Trash (your file manager
+copies in the background, counting its files (Esc stops it). Delete moves the selection to the Trash (your file manager
 restores it from there; on another disk, that disk's own Trash), Shift+Delete deletes it for
 good; each asks first. In the Explorer, Ctrl+Z takes back the last move, rename, paste or
-delete (not Shift+Delete), and Ctrl+Y does it again; both survive a reload.
+delete (not Shift+Delete), and Ctrl+Y does it again; both survive a reload. Rest the
+pointer on a file for its MD5 (**Copy** copies it). A binary file (or a `.bin`) opens as a
+hexdump; F1 **View: Toggle Hexdump** shows it as text, or any file as a hexdump.
 Rest the pointer on a function to see its docs.
 
 **Terminal:** Ctrl+` or the terminal button beside Split Editor opens your shell under the
@@ -226,7 +230,8 @@ while something runs in it asks first. More shells: Ctrl+Shift+` or the `+` on i
 opens another, each with a tab there; click a tab or press Ctrl+PgUp / Ctrl+PgDn to switch,
 and `×` closes the one shown (asked while a program runs). Ctrl+F (at the shell's prompt,
 not in vim or less) finds text in its scrollback: Enter goes to older matches, Shift+Enter
-newer, Esc back to the bottom.
+newer, Esc back to the bottom. A reload (a new termcode installed) keeps the shells and
+what runs in them, with what they showed.
 
 **GitHub:** the GitHub item above Settings (or F1 **View: Show GitHub**), in any folder.
 Its top pane is your account: your contribution graph as on your GitHub profile (Year or
