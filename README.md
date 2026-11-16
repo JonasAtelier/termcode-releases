@@ -12,6 +12,10 @@ What you get: a file Explorer, Search, Source Control with a commit graph, tabs 
 editors, side-by-side diffs, a minimap, Go to Definition, error checking for shell and
 C/C++, and VS Code themes.
 
+![The editor with the Explorer, the Outline and a terminal running cargo test](doc/screenshots/editor.png)
+
+![Source Control: changes, the commit graph and a side-by-side diff](doc/screenshots/git.png)
+
 ### Is it for you?
 
 termcode is for working on code where your terminal already is: on a server over SSH, in
@@ -20,9 +24,9 @@ Code's look and keys, but it is not VS Code:
 
 | termcode has | termcode doesn't have |
 |---|---|
-| Editing, Explorer, Search, Source Control, diffs | Extensions |
+| Editing, Explorer, Search, Source Control, diffs, a terminal | Extensions |
 | Go to Definition and references, found by searching the code | A language server: no completion, no type-aware rename or navigation |
-| Error checking for shell scripts and C/C++ | A debugger, a built-in terminal, remote development |
+| Error checking for shell scripts and C/C++ | A debugger, remote development |
 | VS Code themes and keys | Settings Sync; only the settings its Settings window lists |
 
 Need a language server or extensions? Use VS Code or an editor built on one. termcode is
@@ -198,10 +202,52 @@ Click the active sidebar icon to hide the sidebar. Drag any divider to resize.
 | F7 / Shift+F7 | Next / previous change in a diff |
 | Ctrl+PgDn / Ctrl+PgUp | Next / previous tab |
 | Ctrl+, | Settings |
+| Ctrl+` | Show / hide the terminal |
 
 **Mouse:** click a file to preview it (italic tab), double-click its tab to keep it open.
-Double-click a name in the Explorer to rename it. Drag a file to an editor edge to split.
+Double-click a name in the Explorer to rename it. Drag a file to an editor edge to split,
+or a file or folder onto a folder in the Explorer to move it there (asked first); hold Ctrl
+(or Alt) as you let go to copy it instead, and rest on a closed folder to open it. Ctrl+click
+adds items to the selection, Shift+click or Shift+↑↓ selects a range, Ctrl+A all; a drag,
+Ctrl+C / Ctrl+X / Ctrl+V and Delete then take them all. Ctrl+V copies or moves into the
+selected folder; a name already there becomes `name (1)`, `name (2)` …, and a big folder
+copies in the background. Delete moves the selection to the Trash (your file manager
+restores it from there; on another disk, that disk's own Trash), Shift+Delete deletes it for
+good; each asks first. In the Explorer, Ctrl+Z takes back the last move, rename, paste or
+delete (not Shift+Delete), and Ctrl+Y does it again; both survive a reload.
 Rest the pointer on a function to see its docs.
+
+**Terminal:** Ctrl+` or the terminal button beside Split Editor opens your shell under the
+editors. Drag its top edge to resize it. While it has the keys, every key goes to the shell
+except Ctrl+`, F1 and Ctrl+Q. Drag over text to copy it (double-click: a word); Ctrl+C
+copies a selection, else interrupts. Programs that use the mouse (vim, htop) get it;
+Shift+drag still selects. Hiding it keeps the shell running; `exit` closes it. Quitting
+while something runs in it asks first. More shells: Ctrl+Shift+` or the `+` on its border
+opens another, each with a tab there; click a tab or press Ctrl+PgUp / Ctrl+PgDn to switch,
+and `×` closes the one shown (asked while a program runs). Ctrl+F (at the shell's prompt,
+not in vim or less) finds text in its scrollback: Enter goes to older matches, Shift+Enter
+newer, Esc back to the bottom.
+
+**GitHub:** the GitHub item above Settings (or F1 **View: Show GitHub**), in any folder.
+Its top pane is your account: your contribution graph as on your GitHub profile (Year or
+Month, ‹ › to go back; hover a day for its count, click one for its month), all your
+repositories, review requests, your pull requests,
+issues assigned to you and unread notifications. Pick a repository there (click or Enter)
+and the bottom pane shows it: description, visibility, default branch, language, stars,
+forks, last push; its stats (a commit graph for the past year, its languages, its top
+contributors); then its Actions runs, pull requests and issues. Tab moves between the
+panes; drag the line between them to resize. It needs the [GitHub CLI](https://cli.github.com)
+(`gh`): signed out, it offers **Sign in with GitHub**, which runs `gh auth login` in the
+terminal, so termcode never sees a password or token. On a row: Enter or `o` opens it in
+the browser, `e` edits its title, `c` checks a pull request out (into this folder's
+repository), `r` re-runs a run, `x` closes an issue or cancels a run, F5 refreshes. Every
+change asks first.
+
+**Outline:** the outline button beside it (or F1 **View: Toggle Outline**) lists the
+file's functions and types on the right, nested. The one the cursor is in is lit; click one
+to go there (double-click: and type there). Click a ▾ to fold. With the keys
+(F1 **View: Focus Outline**): ↑ ↓ move, ← → fold and unfold, Enter goes there, Esc goes
+back. Drag its left edge to resize it.
 
 Some terminals (GNOME Terminal, Ptyxis) can't send Ctrl+Shift keys, Ctrl+Tab or
 Ctrl+1/2/3. Use F1 or the other key in the table instead, or bind your own.
@@ -264,9 +310,12 @@ Turn error checking off with `"termcode.errorChecking": false`.
 
 - **Changes:** `+` stages a file, `−` unstages it, `↶` discards (always asks).
 - **Commit:** click **Add commit**. Stage files, write a message, then **Commit** or
-  **Commit & Push**. Your draft is kept if you cancel.
+  **Commit & Push**. Your draft is kept if you cancel. In the message, a drag selects (a
+  double-click, a word), and Ctrl+C, Ctrl+X and Ctrl+V copy, cut and paste.
+  In its diff, a drag selects one side's text (a double-click, a word) and Ctrl+C copies it.
 - **Graph:** click a commit to see its files, click a file to see its diff. Rest the pointer
-  on a commit (or press `i`) for a card with **Copy hash** and **Open changes**.
+  on a commit (or press `i`) for a card with **Copy hash** and **Open changes**; drag over
+  its message to select it, Ctrl+C copies.
 - **Status bar:** click the branch to switch or create one; click `↓1 ↑2` to pull and push;
   click `Ln, Col` to go to a line. Every item lights up under the pointer.
 - **More Git:** F1, then type `Git:` for pull, push, fetch, stash, merge, rebase and more.
