@@ -73,6 +73,13 @@ apt also installs git, ripgrep, xclip (copy and paste) and shellcheck (checks sh
 scripts). Optional: clang, to check C/C++ files; [herdr](https://herdr.dev), for termcode
 as a Code tab; [Ghostty](https://ghostty.org), the terminal termcode is tested in.
 
+**Everything else at once:** `/usr/share/termcode/setup.sh` sets up what termcode's
+features use, as on the machine termcode is made on: clang, readelf and poppler (C/C++
+checks, ELF files, PDFs), the GitHub CLI, a Nerd Font, Ghostty, serial port access,
+and for the Programmer arduino-cli and ESP-IDF (with herdr, if you use it: the Code tab
+and its pictures). It asks before each part (`--yes` takes the defaults, `--all` says
+yes to all, `--dry-run` only shows the commands) and leaves what is there alone.
+
 ## 2. Fonts and icons (nothing to do)
 
 termcode works with the font your terminal already uses, and picks its icons by itself:
@@ -162,13 +169,32 @@ termcode                    # this folder (its git repo if inside one)
 termcode ~/proj             # any folder
 termcode src/main.rs:120    # a file at line 120 (also :LINE:COL)
 termcode --tab src          # the same, as a herdr tab
+termcode --new ~/proj       # a second termcode, even inside one's terminal
 ```
+
+- **From termcode's own terminal:** `termcode PATH` there opens PATH in *this* termcode
+  instead of a second one inside it: a file of this folder opens in place; another
+  folder switches termcode over to it (your shells keep running, each folder keeps its
+  own session). `cd ~/other && termcode .` jumps folders. It waits while a Programmer
+  job or a Git write runs, or a file is unsaved. In a herdr Code tab, the folder opens
+  as its own tab. (Each termcode has a private socket for this: `$XDG_RUNTIME_DIR/termcode/`.)
 
 - **Quitting:** Ctrl+Q, or Close in the title bar. You are asked about unsaved files first.
 - **Sessions:** open the same folder again and your tabs, cursors and layout come back.
   Unsaved text survives a crash too.
 - **Subfolders:** `termcode drivers/net` shows only that folder, but Source Control still
   uses the whole repo.
+- **Pictures and PDFs:** a PNG, JPEG, GIF, WebP, BMP or ICO opens as the picture (fitted;
+  `+` `-` zoom, `0` fits, `1` is actual size, the arrows pan); a PDF as a document, drawn
+  by poppler's `pdftoppm`: its pages one under another with a scrollbar (the wheel, the
+  arrows, PgUp/PgDn, Home/End; ‹ › go a page; Ctrl+wheel zooms around the mouse; in
+  Ghostty and kitty the pages stay in the terminal as tiles, so scrolling only moves
+  them), **2 pages** side by side while whole pages fit, its text selected with the
+  mouse and copied with Ctrl+C (Ctrl+A: the page), found with Ctrl+F (the whole
+  document; Enter goes to the next), its table of contents in the Outline (a click goes
+  there). **text** shows its text, a page a heading; `sudo apt install
+  poppler-utils` if missing. **hexdump** on the bar shows the bytes. Pictures use the Kitty graphics protocol (Ghostty, kitty),
+  half-blocks elsewhere.
 - **Keyboard shortcut for the Code tab:** none is set. In herdr, bind `plugin_action`
   `jonasatelier.termcode.open` to a free key.
 
@@ -179,6 +205,7 @@ termcode --tab src          # the same, as a herdr tab
 | Explorer | Alt+1, Ctrl+E | Files. **Timeline** below shows the open file's commits |
 | Search | Alt+4, F4 | Search all files. **References** below shows where the symbol at the cursor is used |
 | Source Control | Alt+2, F2, Ctrl+G | Changes, commits and the commit graph |
+| Programmer | the chip icon above GitHub | STM32CubeProgrammer, Arduino sketches, ESP-IDF projects (below) |
 
 Click the active sidebar icon to hide the sidebar. Drag any divider to resize.
 
@@ -197,7 +224,9 @@ Click the active sidebar icon to hide the sidebar. Drag any divider to resize.
 | Alt+Up / Alt+Down | Move lines up / down |
 | Ctrl+Shift+[ / ] | Fold / unfold |
 | Alt+Z | Toggle word wrap |
-| Ctrl+K V | Markdown preview |
+| Ctrl+Shift+V | Markdown: preview ↔ source; a patch: diff ↔ source; a log: log ↔ source (or the buttons on the breadcrumbs' row) |
+| `/` · F8 or `n` · End | In a log: filter · next error or warning · follow the end |
+| Ctrl+K V | Markdown preview to the side |
 | F12 or Ctrl+click | Go to Definition |
 | Shift+F12 | Find all references |
 | Alt+← / Alt+→ | Go back / forward |
@@ -218,7 +247,11 @@ restores it from there; on another disk, that disk's own Trash), Shift+Delete de
 good; each asks first. In the Explorer, Ctrl+Z takes back the last move, rename, paste or
 delete (not Shift+Delete), and Ctrl+Y does it again; both survive a reload. Rest the
 pointer on a file for its MD5 (**Copy** copies it). A binary file (or a `.bin`) opens as a
-hexdump; F1 **View: Toggle Hexdump** shows it as text, or any file as a hexdump.
+hexdump; F1 **View: Toggle Hexdump** shows it as text, or any file as a hexdump. An ELF
+file (`.so`, an executable, `.o`, `.ko`) opens as `readelf`'s report, its SONAME, needed
+libraries, symbol versions, build ID and compiler summed up first; the **readelf** and
+**hexdump** buttons on its banner switch between the two. A symlink has an arrow
+after its name (red when broken); rest the pointer on it to see where it points.
 Rest the pointer on a function to see its docs.
 
 **Terminal:** Ctrl+` or the terminal button beside Split Editor opens your shell under the
@@ -240,7 +273,14 @@ repositories, review requests, your pull requests,
 issues assigned to you and unread notifications. Pick a repository there (click or Enter)
 and the bottom pane shows it: description, visibility, default branch, language, stars,
 forks, last push; its stats (a commit graph for the past year, its languages, its top
-contributors); then its Actions runs, pull requests and issues. Tab moves between the
+contributors); then its Actions runs, pull requests and issues. The editor area shows the
+repository too, as github.com does. Its main page: the latest commit, the files and
+folders each with its last commit, insights (pull requests and issues open, merged and
+closed; languages; the year's commits as a heat map; commits by weekday and hour; lines
+added and removed a week; top contributors), then the README. On the right, a button back
+to the main page and the files as a tree. Click a file for its code in the middle
+(read-only; it scrolls, selects, finds and copies as any editor), its outline under the
+tree. Click the branch at the top right to switch the branch. Tab moves between the
 panes; drag the line between them to resize. It needs the [GitHub CLI](https://cli.github.com)
 (`gh`): signed out, it offers **Sign in with GitHub**, which runs `gh auth login` in the
 terminal, so termcode never sees a password or token. On a row: Enter or `o` opens it in
@@ -339,6 +379,45 @@ Git runs in the background and never asks for a password inside the panel. If a 
 hangs, click the spinner in the status bar to cancel it. F1 **Git: Show Git Output** shows
 what ran.
 
+### Programmer (STM32)
+
+The chip icon (above GitHub) does what STM32CubeProgrammer does, through ST's
+`STM32_Programmer_CLI`: pick a feature on the left, its page opens in the editor area,
+and the tool's output with a progress bar shows in the panel below (its **Programmer**
+tab, beside **Terminal**). Every page starts with the target (its name, Connect or
+Disconnect); a running job shows its progress there too, programming step by step
+(Erase › Download › Verify › Run). **F5** runs the page's main action. Fields such as
+Address and Size are typed in place: Enter takes the value (in Memory, reads there), a
+bad one says why in red. Closing the page's tab goes back to the Explorer.
+
+| Feature | What it does |
+|---|---|
+| Device | Port (SWD, JTAG), mode (Normal, Under reset, Hot plug), speed, the ST-LINK probe; **Connect** reads the target (then **Disconnect**), **Reset Target** resets it |
+| Memory | Reads an address range into a grid as CubeProgrammer's: address, 8-, 16- or 32-bit values, ASCII; **Save As…** writes it to a `.bin` |
+| Program | Writes a `.bin` (at the address given), `.hex`, `.elf`, `.srec` or `.s19`; verify, full erase first, reset and run after. Click the file (or **Browse…**) to pick it folder by folder, from your home folder |
+| Erase | The full chip, or sectors (`0-3`, `0 1 2`); each asks first |
+| Option Bytes | Shows them, read only |
+| Serial Console | The target's UART output (its `printf`) through the ST-LINK's virtual COM port, in the panel's **Serial** tab; **Send…** writes a line to it |
+
+The switch at the top of the view picks the tool: **STM32Cube** (above), **Arduino** or
+**ESP-IDF**. Each takes any target it knows, given what it needs:
+
+| Tool | Give it | Pages |
+|---|---|---|
+| Arduino (`arduino-cli`) | a sketch folder (its `.ino`) and the board's FQBN | **Boards** (what it sees: port, name, FQBN; pick one), **Sketch** (Compile, Upload, verify after), **Serial Console** on the board's port |
+| ESP-IDF (`idf.py`) | a project folder (`CMakeLists.txt`, `main/`) | **Project** (Build, Flash, Erase Flash, the target chip: set-target asks first), **Serial Console** |
+
+The sketch or project is found in the workspace (or above the open file), or picked
+with **Browse…**. Uploading or flashing takes the Serial Console's port for its time
+and gives it back. ESP-IDF is found through `$IDF_PATH`, Espressif's installer's record
+(`~/.espressif/idf-env.json`) or `~/esp/esp-idf`; termcode loads its `export.sh` itself.
+Without a tool, an **Install** button runs its installer in the terminal.
+
+Without the tool, the view has an **Install** button: it runs ST's installer from
+`~/Downloads/en.stm32cubeprg-lin*.zip` in the terminal, or opens ST's download page (ST
+asks you to sign in to download it). termcode finds the tool on `PATH`, in
+`~/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin` or in STM32CubeIDE.
+
 ---
 
 ## Settings
@@ -413,6 +492,7 @@ A few more examples:
 | `files.trimTrailingWhitespace` | `true` | On save, on edited lines |
 | `files.insertFinalNewline` | `true` | On save |
 | `workbench.tree.enableStickyScroll` | `true` | Keep the current folder pinned while scrolling |
+| `explorer.autoReveal` | `true` | Show the active editor's file in the Explorer (its folders opened, it selected) |
 | `workbench.tree.stickyScrollMaxItemCount` | `1` | More than 1: nested rows, like VS Code |
 | `termcode.colors` | `"auto"` | `"truecolor"`, `"256"` or `"16"`; auto reads the terminal's environment |
 | `termcode.keybindings` | `{}` | Your own keys for F1 commands, see [Your own keys](#your-own-keys) |
@@ -457,6 +537,33 @@ first time termcode starts.
 | No error underlines | Install `shellcheck` / `clang` (the status bar says which, once) |
 | C/C++ says a header is not found | Build the kernel once, or add a `compile_commands.json` (see [Error checking](#error-checking)) |
 | A file opens read-only | It is over 16 MB / 500,000 lines, binary, or not UTF-8 |
+
+## Performance
+
+Measured 2026-11-17 on an Intel i5-12500 (12 threads, 16 GB RAM, Ubuntu), each editor
+opening the same copy of termcode's source and its 2,374-line `src/panel/mod.rs`. Medians
+of 5 runs (VS Code: 3), after one warm-up run.
+
+| | termcode 0.4.0 | nvim 0.12 `--clean` | nvim 0.12 + LazyVim | VS Code 1.146 |
+|---|---|---|---|---|
+| Start, until the file's text is on screen | 100 ms | 61 ms | 109 ms | 1,006 ms ¹ |
+| Memory (PSS, all its processes) | 19 MB | 11 MB | 44 MB | 949 MB (8 processes) |
+| CPU while idle | 0% | 0% | 1.0% | 3.1% |
+| A key to the screen changing, p50 / p95 ² | 11.7 / 14.1 ms | 11.2 / 12.1 ms | 18.7 / 29.6 ms | not measured |
+| A 200,000-line log (13 MB): open / memory | 177 ms / 54 MB | 64 ms / 25 MB | 362 ms / 52 MB | 1,276 ms ¹ / 1,359 MB |
+| Installed | 12 MB, one file | 40 MB | 40 MB + 302 MB of plugins | 573 MB (snap) |
+
+- The terminal editors ran in tmux (120×40); "on screen" is the first frame tmux shows
+  with the file's text.
+- ¹ VS Code's own startup time (`--prof-append-timers`): from its main process starting
+  to its workbench being ready, without the snap's launch. It ran with a new profile and
+  no extensions, under Xwayland with software rendering (the snap could not load the GPU
+  driver here).
+- ² Down sent through tmux, until tmux's screen changes, so a few milliseconds are tmux's.
+  VS Code's GUI could not be driven from the test.
+- A file over 16 MB opens read-only and only its first 16 MB
+  (see [Troubleshooting](#troubleshooting)), so the big file is 13 MB: all of it in
+  every editor.
 
 ## Known limits
 
