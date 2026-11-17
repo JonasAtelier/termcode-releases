@@ -64,3 +64,25 @@ Description: A VS Code-style code editor and Git panel in the terminal
  vim, or as a Code tab in a herdr workspace. To add the Code tab to herdr, run:
  herdr plugin link /usr/share/termcode
 
+Package: termcode
+Architecture: arm64
+Version: 0.4.0-1
+Priority: optional
+Section: editors
+Maintainer: JonasAtelier
+Installed-Size: 8795
+Depends: git, ripgrep
+Recommends: xclip, shellcheck
+Suggests: wl-clipboard, clang, gh
+Filename: pool/main/t/termcode/termcode_0.4.0-1_arm64.deb
+Size: 2902928
+MD5sum: bcf18628d1eb1247370c2e5b287c96b4
+SHA1: c198871193137a884e63258a892219ee3937420a
+SHA256: e26318d1802327853e45214f350a702ac867b6f62e6f74f52141a02177351e00
+SHA512: 96b0490896a2ac93e434af22fc381b3dd5a3114fd0709e7c700c921ef2113187b3281833bbfbe428b3a101fc54efc70f0fde768cd55dd4fbd9c5bd496a87051e
+Homepage: https://github.com/JonasAtelier/termcode-releases
+Description: A VS Code-style code editor and Git panel in the terminal
+ A VS Code-style code editor and Git panel that runs inside the terminal, like
+ vim, or as a Code tab in a herdr workspace. To add the Code tab to herdr, run:
+ herdr plugin link /usr/share/termcode
+
