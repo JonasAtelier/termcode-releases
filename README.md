@@ -7,6 +7,8 @@ editor as a Code tab in herdr.
 > This repository is where termcode is published, and where you report problems and ask
 > for features. It holds no source code.
 
+**Contents** · [Install on Debian or Ubuntu](#install-on-debian-or-ubuntu) · [Edit a file](#edit-a-file) · [Review changes](#review-changes) · [Help and settings](#help-and-settings) · [License and credits](#license-and-credits)
+
 ![termcode showing the file explorer, editor and integrated terminal](doc/screenshots/editor.png)
 
 ## Install on Debian or Ubuntu
@@ -23,12 +25,24 @@ termcode --version
 The release notes also explain how to add the signed apt repository for updates.
 For a Code tab in herdr 0.9.1+, run `herdr plugin link /usr/share/termcode`.
 
-## Open your first file
+<a id="open-your-first-file"></a>
+
+## Edit a file
 
 From a project folder, run `termcode .` (or `termcode --tab .` in herdr). Press
 **Ctrl+P**, type part of a filename and select it. **Ctrl+S** saves, **F1** lists
-commands, and **Ctrl+Q** returns to the shell. To review the changes, open **Source
-Control** with **Ctrl+G** and select the file to see its diff.
+commands, and **Ctrl+Q** returns to the shell.
+
+| Task | How to do it |
+| --- | --- |
+| Open a file at a known line | Run `termcode README.md:12` from the folder containing that file. |
+| Find a function | Press **Ctrl+P** in the editor and type `@` to browse functions in the current file. |
+| Preview Markdown | Open a Markdown file and press **Ctrl+Shift+V** to switch between source and preview. |
+
+## Review changes
+
+Save an edit, press **Ctrl+G** to open **Source Control**, and select the changed
+file. Read the old and new versions side by side.
 
 When a repository’s Git settings can start external programs, Source Control asks you
 to trust the repository before enabling Git. Only grant trust if you know its origin.
